@@ -26,3 +26,11 @@ Route::get('/add-product','ProductController@index')->name('add-product');
 Route::get('/add-category','CategoryController@index')->name('add-category');
 Route::get('/add-addongroup','AddongroupController@index')->name('add-addongroup');
 Route::get('/add-addon','AddonController@index')->name('add-addon');
+Route::get('/coupons','CouponController@index')->name('coupons');
+Route::get('/add-coupon','CouponController@addcoupon')->name('add-coupon');
+Route::get('/add-payment','PaymentmethodController@addpayment')->name('add-payment');
+Route::get('/add-shipping','ShippingmethodController@addshipping')->name('add-shipping');
+Route::get('/shipping-method','ShippingmethodController@index')->name('shipping-method');
+Route::get('/payments-method','PaymentmethodController@index')->name('payments-method');
+
+

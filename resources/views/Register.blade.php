@@ -24,7 +24,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
 </head>
 
-<body class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
+<body>
 
   <!-- Main Content -->
   <main class="body-content">
