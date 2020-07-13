@@ -16,10 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('Login');
 });
-Route::get('/register', function () {
-    return view('Register');
-});
 
+Route::get('/login','Userauthentication@index')->name('login');
+Route::get('/register','Userauthentication@register')->name('register');
 Route::get('/dashboard','DashboardController@index')->name('dashboard');
 Route::get('/menu','MenuController@index')->name('menu');
 Route::get('/add-product','ProductController@index')->name('add-product');
@@ -33,4 +32,9 @@ Route::get('/add-shipping','ShippingmethodController@addshipping')->name('add-sh
 Route::get('/shipping-method','ShippingmethodController@index')->name('shipping-method');
 Route::get('/payments-method','PaymentmethodController@index')->name('payments-method');
 
+Route::get('404', 'PagesController@index');
 
+Route::fallback(function () {
+    return redirect('404');
+
+});
