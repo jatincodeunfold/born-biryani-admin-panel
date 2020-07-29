@@ -19,27 +19,53 @@
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
   }
-
-  $("#toast-success").on("click", function(){
-    toastr.remove();
-    toastr.options.positionClass = "toast-top-left";
-    toastr.success('This is a Success Toast', 'lorem ipsum asit');
-  });
-  $("#toast-danger").on("click", function(){
-    toastr.remove();
-    toastr.options.positionClass = "toast-top-right";
-    toastr.error('This is a Danger Toast', 'lorem ipsum asit');
-  });
-  $("#toast-warning").on("click", function(){
-    toastr.remove();
-    toastr.options.positionClass = "toast-bottom-left";
-    toastr.warning('This is a Warning Toast', 'lorem ipsum asit');
-  });
-  $("#toast-info").on("click", function(){
-    toastr.remove();
-    toastr.options.positionClass = "toast-bottom-right";
-    toastr.info('This is an Info Toast', 'lorem ipsum asit');
-  });
+  $(document).ready(function () {
+      $("#toast-success").on("click", function(){
+        var data = $(this).html();
+        toastr.remove();
+        toastr.options.positionClass = "toast-top-left";
+        toastr.success(data, 'Success Notification');
+      });
+      var toastsuccess = $('#toast-success').length;
+      if(toastsuccess != '0'){
+        var data = $('#toast-success').html();
+        toastr.remove();
+        toastr.options.positionClass = "toast-top-left";
+        toastr.success(data, 'Success Notification');
+      }
+      var toastdanger = $('#toast-danger').length;
+      if(toastdanger != '0'){
+        var data = $('#toast-danger').html();
+        toastr.remove();
+        toastr.options.positionClass = "toast-top-right";
+        toastr.error(data, 'Error Notification');
+      }
+      $("#toast-danger").on('click', function(){
+        var data = $(this).html();
+        toastr.remove();
+        toastr.options.positionClass = "toast-top-right";
+        toastr.error(data, 'Error Notification');
+      });
+      $("#toast-warning").on("click", function(){
+        var data = $(this).html();
+        toastr.remove();
+        toastr.options.positionClass = "toast-bottom-left";
+        toastr.warning(data, 'Warning Notification');
+      });
+      var toastinfo = $('#toast-info').length;
+      if(toastinfo != '0'){
+        var data = $('#toast-info').html();
+        toastr.remove();
+        toastr.options.positionClass = "toast-top-right";
+        toastr.info(data, 'Notification');
+      }
+      $("#toast-info").on("click", function(){
+        var data = $(this).html();
+        toastr.remove();
+        toastr.options.positionClass = "toast-bottom-right";
+        toastr.info(data,'Info Notification');
+      });
+    });
 
   // Convert form data to a proper json object
   function jQFormSerializeArrToJson(formSerializeArr){

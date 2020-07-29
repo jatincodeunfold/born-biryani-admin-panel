@@ -21,7 +21,9 @@
   <!-- Costic styles -->
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <!-- Favicon -->
+  <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+  <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 </head>
 
 <body class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
@@ -68,13 +70,13 @@
         <ul id="product" class="collapse" aria-labelledby="product" data-parent="#side-nav-accordion">
           <li> <a href="{{ url('/menu') }}">Menu Grid</a>
           </li>
-          <li> <a href="{{ url('/add-category') }}">Add Category</a>
+          <li> <a href="{{ url('/category') }}">Add Category</a>
           </li>
-          <li> <a href="{{ url('/add-product') }}">Add Products</a>
+          <li> <a href="{{ url('/product') }}">Add Products</a>
           </li>
-          <li> <a href="{{ url('/add-addongroup') }}">Add AddonGroup</a>
+          <li> <a href="{{ url('/addongroup') }}">Add AddonGroup</a>
           </li>
-          <li> <a href="{{ url('/add-addon') }}">Add Addon</a>
+          <li> <a href="{{ url('/addon') }}">Add Addon</a>
           </li>
         </ul>
       </li>
@@ -86,7 +88,7 @@
         <ul id="coupon" class="collapse" aria-labelledby="coupon" data-parent="#side-nav-accordion">
           <li> <a href="{{ url('/coupons') }}">Coupons</a>
           </li>
-          <li> <a href="{{ url('/add-coupon') }}">Add Coupons</a>
+          <li> <a href="{{ url('/addcoupon') }}">Add Coupons</a>
           </li>
         </ul>
       </li>
@@ -96,9 +98,9 @@
         <a href="#" class="has-chevron" data-toggle="collapse" data-target="#payment" aria-expanded="false" aria-controls="payment"> <span><i class="fas fa-clipboard-list fs-16"></i>Payment Method</span>
         </a>
         <ul id="payment" class="collapse" aria-labelledby="payment" data-parent="#side-nav-accordion">
-          <li> <a href="{{ url('/payments-method') }}">Payment Methods</a>
+          <li> <a href="{{ url('/paymentsmethods') }}">Payment Methods</a>
           </li>
-          <li> <a href="{{ url('/add-payment') }}">Add Payment Method</a>
+          <li> <a href="{{ url('/addpayment') }}">Add Payment Method</a>
           </li>
         </ul>
       </li>
@@ -108,9 +110,9 @@
         <a href="#" class="has-chevron" data-toggle="collapse" data-target="#shipping" aria-expanded="false" aria-controls="shipping"> <span><i class="fas fa-clipboard-list fs-16"></i>Shipping Method</span>
         </a>
         <ul id="shipping" class="collapse" aria-labelledby="shipping" data-parent="#side-nav-accordion">
-          <li> <a href="{{ url('/shipping-method') }}">Shipping Methods</a>
+          <li> <a href="{{ url('/shippingmethods') }}">Shipping Methods</a>
           </li>
-          <li> <a href="{{ url('/add-shipping') }}">Add Shipping Method</a>
+          <li> <a href="{{ url('/addshipping') }}">Add Shipping Method</a>
           </li>
         </ul>
       </li>
@@ -293,7 +295,7 @@
               </a>
             </li>
             <li class="dropdown-menu-footer">
-              <a class="media fs-14 p-2" href="pages/prebuilt-pages/default-login.html"> <span><i class="flaticon-shut-down mr-2"></i> Logout</span>
+              <a class="media fs-14 p-2" href="{{ url('/logout') }}"> <span><i class="flaticon-shut-down mr-2"></i> Logout</span>
               </a>
             </li>
           </ul>
@@ -724,7 +726,6 @@
   </div>
   <!-- SCRIPTS -->
   <!-- Global Required Scripts Start -->
-  <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
   <script src="{{ asset('js/popper.min.js') }}"></script>
   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('js/perfect-scrollbar.js') }}"></script>
@@ -744,6 +745,8 @@
   </script>
   <script src="{{ asset('js/data-tables.js') }}">
   </script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
+  <script src="{{ asset('js/toast.js') }}"></script>
   <!-- Page Specific Scripts Finish -->
   <!-- Costic core JavaScript -->
   <script src="{{ asset('js/framework.js') }}"></script>

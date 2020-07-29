@@ -3309,6 +3309,10 @@ background-color: #d9534f;
   background-color: #878793;
   border-color: #878793;
 }
+.error-by-form{
+  color:red;
+  font-weight: 500;
+}
 .btn-light:hover,
 .btn-light:focus,
 .ms-btn-icon-outline.btn-light:focus,

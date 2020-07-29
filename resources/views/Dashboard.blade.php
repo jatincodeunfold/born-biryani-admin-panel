@@ -4,6 +4,9 @@
 <div class="row">
         <div class="col-md-12">
           <h1 class="db-header-title">Welcome, Anny</h1>
+          @if (Session::has('message'))
+          <?php echo  Session::get('message'); ?>
+          @endif
         </div>
         <div class="col-xl-3 col-lg-6 col-md-6">
           <div class="ms-card ms-widget has-graph-full-width ms-infographics-widget">

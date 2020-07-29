@@ -12,127 +12,30 @@
           </nav>
         </div>
 
-
+        <?php 
+          if (array_key_exists("success",$result)){
+            foreach($result['result'] as $value){
+        ?>
         <div class="col-lg-4 col-md-6 col-sm-6">
           <div class="ms-card">
             <div class="ms-card-img">
-              <img src="{{ asset('img/costic/food-1.jpg') }}" alt="card_img">
+              <img src="{{ $value['category']['img_link'] }}" alt="card_img">
             </div>
             <div class="ms-card-body ">
               <div class="wrapper-new2 ">
-                <h6>Pizza</h6>
-                <span class="white">$15</span>
+                <h6>{{ $value['category']['categoryname'] }}</h6>
               </div>
-              <div class="wrapper-new1">
-                <span>Total Order :<strong class="color-red">150</strong> </span>
-                <span>Revenue :<strong class="color-red">$1000</strong></span>
-
-
-              </div>
+               <div class="wrapper-new1">
+               <span >{{ $value['category']['longDescription'] }}</span>
+              </div> 
               <a href="#" class="btn btn-primary btn-md btn-block">See More</a>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="ms-card">
-            <div class="ms-card-img">
-              <img src="{{ asset('img/costic/food-2.jpg') }}" alt="card_img">
-            </div>
-            <div class="ms-card-body ">
-              <div class="wrapper-new2">
-                <h6>Sandwiches</h6>
-                <span class="white">$23</span>
-              </div>
-              <div class="wrapper-new1">
-                <span>Total Order :<strong class="color-red">150</strong> </span>
-                <span>Revenue :<strong class="color-red">$1000</strong></span>
-
-
-              </div>
-              <a href="#" class="btn btn-primary btn-block">See More</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="ms-card">
-            <div class="ms-card-img">
-              <img src="{{ asset('img/costic/food-3.jpg') }}" alt="card_img">
-            </div>
-            <div class="ms-card-body ">
-              <div class="wrapper-new2">
-                <h6>Fries</h6>
-                <span class="white">$15</span>
-              </div>
-              <div class="wrapper-new1">
-                <span>Total Order :<strong class="color-red">100</strong> </span>
-                <span>Revenue :<strong class="color-red">$1400</strong></span>
-
-
-              </div>
-              <a href="#" class="btn btn-primary btn-block">See More</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="ms-card">
-            <div class="ms-card-img">
-              <img src="{{ asset('img/costic/food-4.jpg') }}" alt="card_img">
-            </div>
-            <div class="ms-card-body ">
-              <div class="wrapper-new2">
-                <h6>Burger</h6>
-                <span class="white">$34</span>
-              </div>
-              <div class="wrapper-new1">
-                <span>Total Order :<strong class="color-red">200</strong> </span>
-                <span>Revenue :<strong class="color-red">$5000</strong></span>
-
-
-              </div>
-              <a href="#" class="btn btn-primary btn-block">See More</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="ms-card">
-            <div class="ms-card-img">
-              <img src="{{ asset('img/costic/food-5.jpg') }}" alt="card_img">
-            </div>
-            <div class="ms-card-body ">
-              <div class="wrapper-new2">
-                <h6>Grilled</h6>
-                <span class="white">$25</span>
-              </div>
-              <div class="wrapper-new1">
-                <span>Total Order :<strong class="color-red">180</strong> </span>
-                <span>Revenue :<strong class="color-red">$2000</strong></span>
-
-
-              </div>
-              <a href="#" class="btn btn-primary btn-block">See More</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="ms-card">
-            <div class="ms-card-img">
-              <img src="{{ asset('img/costic/food-6.jpg') }}" alt="card_img">
-            </div>
-            <div class="ms-card-body ">
-              <div class="wrapper-new2">
-                <h6>Dumplings</h6>
-                <span class="white">$15</span>
-              </div>
-              <div class="wrapper-new1">
-                <span>Total Order :<strong class="color-red">150</strong> </span>
-                <span>Revenue :<strong class="color-red">$3000</strong></span>
-
-
-              </div>
-              <a href="#" class="btn btn-primary btn-block">See More</a>
-            </div>
-          </div>
-        </div>
+        <?php 
+          }
+        }
+        ?>
         <div class="col-xl-12 col-md-12">
           <div class="load">
             <i class="fas fa-redo alt  space text-muted" aria-hidden="true"></i><span class="more">Load More</span>

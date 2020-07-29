@@ -22,6 +22,7 @@
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+  <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -36,22 +37,29 @@
         </div>
         <div class="ms-auth-col">
           <div class="ms-auth-form">
-            <form class="needs-validation" novalidate="">
+            <form method="post" action="/login-process" >
+              {{ csrf_field() }}
               <h3>Login to Account</h3>
-              <p>Please enter your email and password to continue</p>
+              @if (Session::has('message'))
+                <?php echo  Session::get('message'); ?>
+              @endif
               <div class="mb-3">
-                <label for="validationCustom08">Email Address</label>
+                <label for="emailid">Email Address</label>
                 <div class="input-group">
-                  <input type="email" class="form-control" id="validationCustom08" placeholder="Email Address" required="">
-                  <div class="invalid-feedback">Please provide a valid email.</div>
+                  <input type="email" class="form-control" id="emailid" placeholder="Email Address" name="email" value="{{ old('email') }}">
                 </div>
+                @if($errors->has('email'))
+                  <div class="error-by-form">{{ $errors->first('email') }}</div>
+                @endif
               </div>
               <div class="mb-2">
-                <label for="validationCustom09">Password</label>
+                <label for="passwordid">Password</label>
                 <div class="input-group">
-                  <input type="password" class="form-control" id="validationCustom09" placeholder="Password" required="">
-                  <div class="invalid-feedback">Please provide a password.</div>
+                  <input type="password" class="form-control" id="passwordid" placeholder="Password" name="password" value="{{ old('password') }}">
                 </div>
+                @if($errors->has('password'))
+                  <div class="error-by-form">{{ $errors->first('password') }}</div>
+                @endif
               </div>
               <div class="form-group">
                 <label class="ms-checkbox-wrap">
@@ -61,7 +69,6 @@
                 </label>
               </div>
               <button class="btn btn-primary mt-4 d-block w-100" type="submit">Sign In</button> 
-              <p class="mb-0 mt-3 text-center">Don't have an account? <a class="btn-link" href="{{ url('/register') }}">Create Account</a> 
               </p>
             </form>
           </div>
@@ -89,9 +96,8 @@
     </div>
   </main>
 
-<!-- SCRIPTS -->
-  <!-- Global Required Scripts Start -->
-  <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+<!-- Global Required Scripts Start -->
+<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
   <script src="{{ asset('js/popper.min.js') }}"></script>
   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('js/perfect-scrollbar.js') }}"></script>
@@ -111,6 +117,8 @@
   </script>
   <script src="{{ asset('js/data-tables.js') }}">
   </script>
+  <script src="{{ asset('js/toastr.min.js') }}"></script>
+  <script src="{{ asset('js/toast.js') }}"></script>
   <!-- Page Specific Scripts Finish -->
   <!-- Costic core JavaScript -->
   <script src="{{ asset('js/framework.js') }}"></script>

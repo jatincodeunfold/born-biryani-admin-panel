@@ -12,9 +12,6 @@
             </ol>
           </nav>
 
-          <div class="alert alert-success" role="alert">
-            <strong>Well done!</strong> You successfully read this important alert message.
-          </div>
         </div>
 
 
@@ -25,80 +22,80 @@
               <h6>Add Product Form</h6>
             </div>
             <div class="ms-panel-body">
-              <form class="needs-validation clearfix" novalidate>
+              <form method="post" action="/add-product" enctype="multipart/form-data">
+              {{ csrf_field() }}
+              @if (Session::has('message'))
+              <?php echo  Session::get('message'); ?>
+              @endif
                 <div class="form-row">
                   <div class="col-md-12 mb-3">
-                    <label for="validationCustom18">Product Name</label>
+                    <label for="product">Product Name</label>
                     <div class="input-group">
-                      <input type="text" class="form-control" id="validationCustom18" placeholder="Product Name" value="Pizza" required>
-                      <div class="valid-feedback">
-                        Looks good!
-                      </div>
+                      <input type="text" class="form-control" id="product" placeholder="Product Name" name="productname" value="{{ old('productname') }}">
                     </div>
+                    @if($errors->has('productname'))
+                      <div class="error-by-form">{{ $errors->first('productname') }}</div>
+                    @endif
                   </div>
-
                   <div class="col-md-6 mb-3">
-                    <label for="validationCustom22">Select Catagory</label>
+                    <label for="cat-list">Select Catagory</label>
                     <div class="input-group">
-                      <select class="form-control" id="validationCustom22" required>
-                        <option value="">Catagory 1</option>
-                        <option value="">Catagory 2</option>
-                        <option value="">Catagory 3</option>
-                        <option value="">Catagory 4</option>
-
+                      <select class="form-control" id="cat-list" name="category">
+                      <option value="">choose any one</option>
+                      <?php
+                        $catdata = Helper::get_all_category();
+                        if(!empty($catdata)){
+                          foreach($catdata as $value){
+                            echo  '<option value="'.$value['categoryId'].'">'.$value['categoryname'].'</option>';
+                          }
+                        }
+                      ?>
                       </select>
-                      <div class="invalid-feedback">
-                        Please select a Catagory.
-                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <label for="validationCustom23">Currency</label>
-                    <div class="input-group">
-                      <select class="form-control" id="validationCustom23" required>
-                        <option value="">USD</option>
-                        <option value="">Bitcoins</option>
-                        <option value="">EURO</option>
-
-                      </select>
-                      <div class="invalid-feedback">
-                        Please select a Currency
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <label for="validationCustom24">Quantity</label>
-                    <div class="input-group">
-                      <input type="text" class="form-control" id="validationCustom24" placeholder="01" required>
-                      <div class="invalid-feedback">
-                        Quantity
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <label for="validationCustom25">Price</label>
-                    <div class="input-group">
-                      <input type="text" class="form-control" id="validationCustom25" placeholder="$10" required>
-                      <div class="invalid-feedback">
-                        Price
-                      </div>
-                    </div>
+                    @if($errors->has('category'))
+                      <div class="error-by-form">{{ $errors->first('category') }}</div>
+                    @endif
                   </div>
                   <div class="col-md-12 mb-3">
-                    <label for="validationCustom12">Description</label>
+                    <label for="shortdesc">Short Description</label>
                     <div class="input-group">
-                      <textarea rows="5" id="validationCustom12" class="form-control" placeholder="Message" required></textarea>
-                      <div class="invalid-feedback">
-                        Please provide a message.
-                      </div>
+                      <textarea rows="5" id="shortdesc" class="form-control" placeholder="Short Description" name="shortDescription" value="{{ old('shortDescription') }}"></textarea>
                     </div>
+                    @if($errors->has('shortDescription'))
+                      <div class="error-by-form">{{ $errors->first('shortDescription') }}</div>
+                    @endif
                   </div>
                   <div class="col-md-12 mb-3">
-                    <label for="validationCustom12">Product Image</label>
-                    <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="validatedCustomFile">
-                      <label class="custom-file-label" for="validatedCustomFile">Upload Images...</label>
-                      <div class="invalid-feedback">Example invalid custom file feedback</div>
+                    <label for="desc">Description</label>
+                    <div class="input-group">
+                      <textarea rows="10" id="desc" class="form-control" placeholder="Description" name="description" value="{{ old('description') }}"></textarea>
+                    </div>
+                    @if($errors->has('description'))
+                      <div class="error-by-form">{{ $errors->first('description') }}</div>
+                    @endif
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="price">Price</label>
+                    <div class="input-group">
+                      <input type="number" step="any" min="0" class="form-control" id="price" placeholder="Price" name="price" value="{{ old('price') }}">
+                    </div>
+                    @if($errors->has('price'))
+                      <div class="error-by-form">{{ $errors->first('price') }}</div>
+                    @endif
+                  </div>
+                
+                  <div class="col-md-12 mb-3">
+                    <label for="imgh">Product Image</label>
+                    <div class="input-group">
+                      <input type="file" class="form-control" name="image">
+                    </div>
+                    @if($errors->has('image'))
+                      <div class="error-by-form">{{ $errors->first('image') }}</div>
+                    @endif
+                  </div>
+                  <div class="col-md-12 mb-3">
+                    <div class="ms-panel-header new">
+                      <button class="btn btn-secondary d-block" type="submit">Save</button>
                     </div>
                   </div>
                 </div>
@@ -140,32 +137,11 @@
                     </ol>
                   </div>
                 </div>
-                <div class="ms-panel-header new">
-                  <p class="medium">Status Available</p>
-                  <div>
-                    <label class="ms-switch">
-                      <input type="checkbox">
-                      <span class="ms-switch-slider round"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="ms-panel-header new">
-                  <p class="medium">Discount Active</p>
-                  <div>
-                    <label class="ms-switch">
-                      <input type="checkbox" checked="">
-                      <span class="ms-switch-slider round"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="ms-panel-header new">
-                  <button class="btn btn-secondary d-block" type="submit">Save</button>
-                  <button class="btn btn-primary d-block" type="submit">Save and Add</button>
-                </div>
               </div>
             </div>
           </div>
         </div>
 
       </div>
+     
       @endsection

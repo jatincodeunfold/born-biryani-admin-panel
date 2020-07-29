@@ -12,93 +12,106 @@
             </ol>
           </nav>
 
-          <div class="alert alert-success" role="alert">
-            <strong>Well done!</strong> You successfully read this important alert message.
-          </div>
         </div>
 
 
 
-        <div class="col-xl-6 col-md-12">
+        <div class="col-md-12">
           <div class="ms-panel ms-panel-fh">
             <div class="ms-panel-header">
-              <h6>Add Product Form</h6>
+              <h6>Add Addon Group Form</h6>
             </div>
             <div class="ms-panel-body">
-              <form class="needs-validation clearfix" novalidate>
+              <form method="post" action="/add-addongroup">
+              {{ csrf_field() }}
+              @if (Session::has('message'))
+              <?php echo  Session::get('message'); ?>
+              @endif
                 <div class="form-row">
                   <div class="col-md-12 mb-3">
-                    <label for="validationCustom18">Product Name</label>
+                    <label for="group">Group Name</label>
                     <div class="input-group">
-                      <input type="text" class="form-control" id="validationCustom18" placeholder="Product Name" value="Pizza" required>
-                      <div class="valid-feedback">
-                        Looks good!
-                      </div>
+                      <input type="text" class="form-control" id="group" placeholder="Group Name" name="groupname" value="{{ old('groupname') }}">
                     </div>
+                    @if($errors->has('groupname'))
+                      <div class="error-by-form">{{ $errors->first('groupname') }}</div>
+                    @endif
                   </div>
-
                   <div class="col-md-6 mb-3">
-                    <label for="validationCustom22">Select Catagory</label>
+                    <label for="cat-list">Select Catagory</label>
                     <div class="input-group">
-                      <select class="form-control" id="validationCustom22" required>
-                        <option value="">Catagory 1</option>
-                        <option value="">Catagory 2</option>
-                        <option value="">Catagory 3</option>
-                        <option value="">Catagory 4</option>
-
+                      <select class="form-control" id="cat-list" name="category">
+                      <option value="">choose any one</option>
+                      <?php
+                        $catdata = Helper::get_all_category();
+                        if(!empty($catdata)){
+                          foreach($catdata as $value){
+                            echo  '<option value="'.$value['categoryId'].'">'.$value['categoryname'].'</option>';
+                          }
+                        }
+                      ?>
                       </select>
-                      <div class="invalid-feedback">
-                        Please select a Catagory.
-                      </div>
                     </div>
+                    @if($errors->has('category'))
+                      <div class="error-by-form">{{ $errors->first('category') }}</div>
+                    @endif
                   </div>
                   <div class="col-md-6 mb-3">
-                    <label for="validationCustom23">Currency</label>
+                    <label for="pro-list">Select Product</label>
                     <div class="input-group">
-                      <select class="form-control" id="validationCustom23" required>
-                        <option value="">USD</option>
-                        <option value="">Bitcoins</option>
-                        <option value="">EURO</option>
-
+                      <select class="form-control" id="pro-list" name="product">
+                      
                       </select>
-                      <div class="invalid-feedback">
-                        Please select a Currency
-                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <label for="validationCustom24">Quantity</label>
-                    <div class="input-group">
-                      <input type="text" class="form-control" id="validationCustom24" placeholder="01" required>
-                      <div class="invalid-feedback">
-                        Quantity
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <label for="validationCustom25">Price</label>
-                    <div class="input-group">
-                      <input type="text" class="form-control" id="validationCustom25" placeholder="$10" required>
-                      <div class="invalid-feedback">
-                        Price
-                      </div>
-                    </div>
+                    @if($errors->has('product'))
+                      <div class="error-by-form">{{ $errors->first('product') }}</div>
+                    @endif
                   </div>
                   <div class="col-md-12 mb-3">
-                    <label for="validationCustom12">Description</label>
+                    <label for="type">Type</label>
                     <div class="input-group">
-                      <textarea rows="5" id="validationCustom12" class="form-control" placeholder="Message" required></textarea>
-                      <div class="invalid-feedback">
-                        Please provide a message.
-                      </div>
+                      <select class="form-control" id="type" name="Type">
+                        <option value="SELECT">SELECT</option>
+                        <option value="RADIO">RADIO</option>
+                      </select>
                     </div>
+                    @if($errors->has('Type'))
+                      <div class="error-by-form">{{ $errors->first('Type') }}</div>
+                    @endif
                   </div>
                   <div class="col-md-12 mb-3">
+                    <label for="desc">Description</label>
+                    <div class="input-group">
+                      <textarea rows="10" id="desc" class="form-control" placeholder="Description" name="description" value="{{ old('description') }}"></textarea>
+                    </div>
+                    @if($errors->has('description'))
+                      <div class="error-by-form">{{ $errors->first('description') }}</div>
+                    @endif
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="required">Required Addon Group</label>
+                    <div class="input-group">
+                      <select class="form-control" id="required" name="required">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                      </select>
+                    </div>
+                    @if($errors->has('required'))
+                      <div class="error-by-form">{{ $errors->first('required') }}</div>
+                    @endif
+                  </div>
+                
+                  <!-- <div class="col-md-12 mb-3">
                     <label for="validationCustom12">Product Image</label>
                     <div class="custom-file">
                       <input type="file" class="custom-file-input" id="validatedCustomFile">
                       <label class="custom-file-label" for="validatedCustomFile">Upload Images...</label>
                       <div class="invalid-feedback">Example invalid custom file feedback</div>
+                    </div>
+                  </div> -->
+                  <div class="col-md-12 mb-3">
+                    <div class="ms-panel-header new">
+                      <button class="btn btn-secondary d-block" type="submit">Save</button>
                     </div>
                   </div>
                 </div>
@@ -112,60 +125,21 @@
           </div>
 
         </div>
-
-        <div class="col-xl-6 col-md-12">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="ms-panel">
-                <div class="ms-panel-header">
-                  <h6>Product </h6>
-                </div>
-                <div class="ms-panel-body">
-                  <div id="imagesSlider" class="ms-image-slider carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img class="d-block w-100" src="{{ asset('img/costic/add-product-1.jpg') }}" alt="First slide">
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" src="{{ asset('img/costic/add-product-2.jpg') }}" alt="Second slide">
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" src="{{ asset('img/costic/add-product-3.jpg') }}" alt="Third slide">
-                      </div>
-                    </div>
-                    <ol class="carousel-indicators">
-                      <li data-target="#imagesSlider" data-slide-to="0" class="active"> <img class="d-block w-100" src="{{ asset('img/costic/add-product-1.jpg') }}" alt="First slide"></li>
-                      <li data-target="#imagesSlider" data-slide-to="1"><img class="d-block w-100" src="{{ asset('img/costic/add-product-2.jpg') }}" alt="Second slide"></li>
-                      <li data-target="#imagesSlider" data-slide-to="2"><img class="d-block w-100" src="{{ asset('img/costic/add-product-3.jpg') }}" alt="Third slide"></li>
-                    </ol>
-                  </div>
-                </div>
-                <div class="ms-panel-header new">
-                  <p class="medium">Status Available</p>
-                  <div>
-                    <label class="ms-switch">
-                      <input type="checkbox">
-                      <span class="ms-switch-slider round"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="ms-panel-header new">
-                  <p class="medium">Discount Active</p>
-                  <div>
-                    <label class="ms-switch">
-                      <input type="checkbox" checked="">
-                      <span class="ms-switch-slider round"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="ms-panel-header new">
-                  <button class="btn btn-secondary d-block" type="submit">Save</button>
-                  <button class="btn btn-primary d-block" type="submit">Save and Add</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
+      <script>
+      $(document).ready(function(){
+        $('#cat-list').on('change',function(){
+          $('#pro-list').html('');
+           var cat =  $(this).val();
+           $.ajax({
+                  type: "POST",
+                  url: "<?php echo url('/getproducts'); ?>",
+                  data: {'catid':cat,"_token": "{{ csrf_token() }}"},
+                  success: function(result){
+                      $('#pro-list').append(result);
+                  }
+          });
+        });
+      });
+      </script>
       @endsection
